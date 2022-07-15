@@ -28,7 +28,7 @@ import * as posedetection from "@tensorflow-models/pose-detection";
 
 import { Camera } from "./camera";
 import { setupDatGui } from "./option_panel";
-import { STATE } from "./params";
+import { STATE, MOVENET_CONFIG } from "./params";
 import { setupStats } from "./stats_panel";
 import { setBackendAndEnvFlags } from "./util";
 
@@ -138,10 +138,6 @@ function endEstimatePosesStats() {
     const averageInferenceTime = inferenceTimeSum / numInferences;
     inferenceTimeSum = 0;
     numInferences = 0;
-    // stats.customFpsPanel.update(
-    //   1000.0 / averageInferenceTime,
-    //   120 /* maxValue */
-    // );
     lastPanelUpdate = endInferenceTime;
   }
 }
@@ -267,7 +263,9 @@ async function app() {
   // }
 
   // await setupDatGui(urlParams);
-  await setupDatGui();
+  // await setupDatGui();
+  // console.log(STATE);
+  // console.log(MOVENET_CONFIG);
 
   // stats = setupStats();
 

@@ -28,11 +28,26 @@ export const VIDEO_SIZE = {
 export const VIDEO_HEIGHT = 750; //[added]
 export const VIDEO_WIDTH = 1500;
 
+export const MOVENET_CONFIG = {
+  maxPoses: 1,
+  type: "lightning",
+  scoreThreshold: 0.3,
+  customModel: "",
+  enableTracking: false,
+};
 export const STATE = {
   camera: { targetFPS: 60, sizeOption: "640 X 480" },
-  backend: "",
-  flags: {},
-  modelConfig: {},
+  backend: "tfjs-webgl",
+  flags: {
+    WEBGL_CPU_FORWARD: true,
+    WEBGL_FLUSH_THRESHOLD: -1,
+    WEBGL_FORCE_F16_TEXTURES: false,
+    WEBGL_PACK: true,
+    WEBGL_RENDER_FLOAT32_CAPABLE: true,
+    WEBGL_VERSION: 2,
+  },
+  modelConfig: MOVENET_CONFIG,
+  model: "MoveNet",
 };
 export const BLAZEPOSE_CONFIG = {
   maxPoses: 1,
@@ -44,13 +59,7 @@ export const POSENET_CONFIG = {
   maxPoses: 1,
   scoreThreshold: 0.5,
 };
-export const MOVENET_CONFIG = {
-  maxPoses: 1,
-  type: "lightning",
-  scoreThreshold: 0.3,
-  customModel: "",
-  enableTracking: false,
-};
+
 /**
  * This map descripes tunable flags and theior corresponding types.
  *
