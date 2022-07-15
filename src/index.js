@@ -39,9 +39,12 @@ let inferenceTimeSum = 0,
   lastPanelUpdate = 0;
 let rafId;
 
-let ballCaughtFlag = 0;
-let xLocation = 200; //initial location
-let yLocation = 200;
+let ballRightCaughtFlag = 0;
+let ballLeftCaughtFlag = 0;
+let xRightLocation = 200; //initial location
+let yRightLocation = 200;
+let xLeftLocation = 200; //initial location
+let yLeftLocation = 200;
 
 async function createDetector() {
   switch (STATE.model) {
@@ -178,6 +181,8 @@ async function renderResult() {
 
   camera.drawCtx();
 
+  let x_lWrist = -1;
+  let y_lWrist = -1;
   let x_rWrist = -1;
   let y_rWrist = -1;
 
@@ -186,34 +191,59 @@ async function renderResult() {
   // which shouldn't be rendered.
   if (poses && poses.length > 0 && !STATE.isModelChanged) {
     camera.drawResults(poses);
+    x_lWrist = poses[0].keypoints[9].x;
+    y_lWrist = poses[0].keypoints[9].y;
     x_rWrist = poses[0].keypoints[10].x;
     y_rWrist = poses[0].keypoints[10].y;
   }
 
   //공을 잡으면 location 바뀜
-  if (ballCaughtFlag == 1) {
-    xLocation = Math.random() * 640;
-    yLocation = Math.random() * 480;
+  //left
+  if (ballLeftCaughtFlag == 1) {
+    xLeftLocation = Math.random() * 640; //TODO: VIDEO_SIZE width
+    yLeftLocation = Math.random() * 480; //TODO: VIDEO_SIZE height
 
-    ballCaughtFlag = 0;
+    ballLeftCaughtFlag = 0;
+  }
+
+  //right
+  if (ballRightCaughtFlag == 1) {
+    xRightLocation = Math.random() * 640; //TODO: VIDEO_SIZE width
+    yRightLocation = Math.random() * 480; //TODO: VIDEO_SIZE height
+
+    ballRightCaughtFlag = 0;
   }
 
   let radius = 10;
 
-  if (!ballInBoundary(x_rWrist, y_rWrist, xLocation, yLocation, radius)) {
-    camera.drawMyIcon(xLocation, yLocation, radius);
+  //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
+  //left
+  if (
+    !ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation, radius)
+  ) {
+    camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
   } else {
-    ballCaughtFlag = 1;
+    ballLeftCaughtFlag = 1;
+  }
+
+  //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
+  //right
+  if (
+    !ballInBoundary(x_rWrist, y_rWrist, xRightLocation, yRightLocation, radius)
+  ) {
+    camera.drawRightBall(xRightLocation, yRightLocation, radius);
+  } else {
+    ballRightCaughtFlag = 1;
   }
 }
 
-function ballInBoundary(x_rWrist, y_rWrist, xLocation, yLocation, radius) {
+function ballInBoundary(x_wrist, y_wrist, xLocation, yLocation, radius) {
   let xMin = xLocation - radius;
   let xMax = xLocation + radius;
   let yMin = yLocation - radius;
   let yMax = yLocation + radius;
 
-  if (xMin < x_rWrist && x_rWrist < xMax && yMin < y_rWrist && y_rWrist < yMax)
+  if (xMin < x_wrist && x_wrist < xMax && yMin < y_wrist && y_wrist < yMax)
     return true;
   return false;
 }

@@ -191,9 +191,9 @@ export class Camera {
   }
 
   /**
-   * Draw random thing on canvas
+   * Draw ball for right wrist on canvas
    */
-  drawMyIcon(xLocation, yLocation, radius) {
+  drawRightBall(xLocation, yLocation, radius) {
     this.ctx.fillStyle = "Red";
     this.ctx.strokeStyle = "White";
     // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
@@ -202,6 +202,20 @@ export class Camera {
     circle.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
     this.ctx.fill(circle);
     this.ctx.stroke(circle);
+  }
+
+  /**
+   * Draw ball for left wrist on canvas
+   */
+  drawLeftBall(xLocation, yLocation, radius) {
+    this.ctx.fillStyle = "Blue";
+    this.ctx.strokeStyle = "White";
+    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+
+    const circle2 = new Path2D();
+    circle2.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
+    this.ctx.fill(circle2);
+    this.ctx.stroke(circle2);
   }
 
   /**
