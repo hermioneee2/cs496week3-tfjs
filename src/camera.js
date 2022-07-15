@@ -98,21 +98,6 @@ export class Camera {
 
     const { targetFPS, sizeOption } = cameraParam;
     const $size = params.VIDEO_SIZE[sizeOption];
-    // const videoConfig = {
-    //   audio: false,
-    //   video: {
-    //     facingMode: "user",
-    //     // Only setting the video to a specified size for large screen, on
-    //     // mobile devices accept the default size.
-    //     width: isMobile() ? params.VIDEO_SIZE["360 X 270"].width : $size.width,
-    //     height: isMobile()
-    //       ? params.VIDEO_SIZE["360 X 270"].height
-    //       : $size.height,
-    //     frameRate: {
-    //       ideal: targetFPS,
-    //     },
-    //   },
-    // };
     const videoConfig = {
       audio: false,
       video: {
@@ -121,7 +106,7 @@ export class Camera {
         // mobile devices accept the default size.
         width: isMobile()
           ? params.VIDEO_SIZE["360 X 270"].width
-          : params.VIDEO_WIDTH,
+          : params.VIDEO_WIDTH, //[added]
         height: isMobile()
           ? params.VIDEO_SIZE["360 X 270"].height
           : params.VIDEO_HEIGHT,

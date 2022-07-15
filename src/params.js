@@ -25,8 +25,8 @@ export const VIDEO_SIZE = {
   "640 X 360": { width: 640, height: 360 },
   "360 X 270": { width: 360, height: 270 },
 };
-export const VIDEO_HEIGHT = 750;
-export const VIDEO_WIDTH = 1300;
+export const VIDEO_HEIGHT = 750; //[added]
+export const VIDEO_WIDTH = 1500;
 
 export const STATE = {
   camera: { targetFPS: 60, sizeOption: "640 X 480" },
