@@ -25,8 +25,8 @@ export const VIDEO_SIZE = {
   "640 X 360": { width: 640, height: 360 },
   "360 X 270": { width: 360, height: 270 },
 };
-export const VIDEO_HEIGHT = 750; //[added]
-export const VIDEO_WIDTH = 1500;
+export const VIDEO_HEIGHT = 720; //[added]
+export const VIDEO_WIDTH = 1280;
 
 export const MOVENET_CONFIG = {
   maxPoses: 1,
@@ -36,6 +36,7 @@ export const MOVENET_CONFIG = {
   enableTracking: false,
 };
 export const STATE = {
+  //[edited]
   camera: { targetFPS: 60, sizeOption: "640 X 480" },
   backend: "tfjs-webgl",
   flags: {
@@ -49,6 +50,7 @@ export const STATE = {
   modelConfig: MOVENET_CONFIG,
   model: "MoveNet",
 };
+
 export const BLAZEPOSE_CONFIG = {
   maxPoses: 1,
   type: "full",

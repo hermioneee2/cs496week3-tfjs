@@ -27,9 +27,7 @@ tfjsWasm.setWasmPaths(
 import * as posedetection from "@tensorflow-models/pose-detection";
 
 import { Camera } from "./camera";
-import { setupDatGui } from "./option_panel";
-import { STATE, MOVENET_CONFIG } from "./params";
-import { setupStats } from "./stats_panel";
+import { STATE, VIDEO_WIDTH, VIDEO_HEIGHT } from "./params";
 import { setBackendAndEnvFlags } from "./util";
 
 let detector, camera, stats;
@@ -43,7 +41,7 @@ let ballRightCaughtFlag = 0;
 let ballLeftCaughtFlag = 0;
 let xRightLocation = 200; //initial location
 let yRightLocation = 200;
-let xLeftLocation = 200; //initial location
+let xLeftLocation = 600; //initial location
 let yLeftLocation = 200;
 
 async function createDetector() {
@@ -196,16 +194,16 @@ async function renderResult() {
   //공을 잡으면 location 바뀜
   //left
   if (ballLeftCaughtFlag == 1) {
-    xLeftLocation = Math.random() * 640; //TODO: VIDEO_SIZE width
-    yLeftLocation = Math.random() * 480; //TODO: VIDEO_SIZE height
+    xLeftLocation = Math.random() * VIDEO_WIDTH; //TODO: VIDEO_SIZE width
+    yLeftLocation = Math.random() * VIDEO_HEIGHT; //TODO: VIDEO_SIZE height
 
     ballLeftCaughtFlag = 0;
   }
 
   //right
   if (ballRightCaughtFlag == 1) {
-    xRightLocation = Math.random() * 640; //TODO: VIDEO_SIZE width
-    yRightLocation = Math.random() * 480; //TODO: VIDEO_SIZE height
+    xRightLocation = Math.random() * VIDEO_WIDTH; //TODO: VIDEO_SIZE width
+    yRightLocation = Math.random() * VIDEO_HEIGHT; //TODO: VIDEO_SIZE height
 
     ballRightCaughtFlag = 0;
   }
@@ -255,20 +253,6 @@ async function renderPrediction() {
 }
 
 async function app() {
-  // Gui content will change depending on which model is in the query string.
-  // const urlParams = new URLSearchParams(window.location.search);
-  // if (!urlParams.has('model')) {
-  //   alert('Cannot find model in the query string.');
-  //   return;
-  // }
-
-  // await setupDatGui(urlParams);
-  // await setupDatGui();
-  // console.log(STATE);
-  // console.log(MOVENET_CONFIG);
-
-  // stats = setupStats();
-
   camera = await Camera.setupCamera(STATE.camera);
 
   await setBackendAndEnvFlags(STATE.flags, STATE.backend);
