@@ -178,11 +178,16 @@ async function renderResult() {
 
   camera.drawCtx();
 
+  let x_rWrist = -1;
+  let y_rWrist = -1;
+
   // The null check makes sure the UI is not in the middle of changing to a
   // different model. If during model change, the result is from an old model,
   // which shouldn't be rendered.
   if (poses && poses.length > 0 && !STATE.isModelChanged) {
     camera.drawResults(poses);
+    x_rWrist = poses[0].keypoints[10].x;
+    y_rWrist = poses[0].keypoints[10].y;
   }
 
   //공을 잡으면 location 바뀜
@@ -192,9 +197,6 @@ async function renderResult() {
 
     ballCaughtFlag = 0;
   }
-
-  let x_rWrist = poses[0].keypoints[10].x;
-  let y_rWrist = poses[0].keypoints[10].y;
 
   let radius = 10;
 
