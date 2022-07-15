@@ -182,20 +182,7 @@ async function renderResult() {
   // different model. If during model change, the result is from an old model,
   // which shouldn't be rendered.
   if (poses && poses.length > 0 && !STATE.isModelChanged) {
-    //where they draw the result
     camera.drawResults(poses);
-    // console.log(poses[0].keypoints[10]);
-    // console.log(poses[0].keypoints[10].y);
-    // console.log(poses[0].keypoints);
-    // if (
-    //   95 < poses[0].keypoints[10].x < 105 &&
-    //   95 < poses[0].keypoints[10].y < 105
-    // ) {
-    //   console.log("in!");
-    //   console.log(poses[0].keypoints[10]);
-    // } else {
-    //   console.log("out!");
-    // }
   }
 
   //공을 잡으면 location 바뀜
@@ -210,32 +197,24 @@ async function renderResult() {
   let y_rWrist = poses[0].keypoints[10].y;
 
   let radius = 10;
+
+  if (!ballInBoundary(x_rWrist, y_rWrist, xLocation, yLocation, radius)) {
+    camera.drawMyIcon(xLocation, yLocation, radius);
+  } else {
+    ballCaughtFlag = 1;
+  }
+}
+
+function ballInBoundary(x_rWrist, y_rWrist, xLocation, yLocation, radius) {
   let xMin = xLocation - radius;
   let xMax = xLocation + radius;
   let yMin = yLocation - radius;
   let yMax = yLocation + radius;
 
-  if (
-    !(xMin < x_rWrist && x_rWrist < xMax && yMin < y_rWrist && y_rWrist < yMax)
-  ) {
-    camera.drawMyIcon(xLocation, yLocation, radius);
-  } else {
-    ballCaughtFlag = 1;
-  }
-
-  // camera.drawMyIcon();
+  if (xMin < x_rWrist && x_rWrist < xMax && yMin < y_rWrist && y_rWrist < yMax)
+    return true;
+  return false;
 }
-
-// function checkDrawingCondition(x_rWrist, y_rWrist, xLocation, yLocation) {
-//   this.ctx.fillStyle = "Red";
-//   this.ctx.strokeStyle = "White";
-//   // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
-
-//   const circle = new Path2D();
-//   circle.arc(100, 100, 20, 0, 2 * Math.PI);
-//   this.ctx.fill(circle);
-//   this.ctx.stroke(circle);
-// }
 
 async function renderPrediction() {
   await checkGuiUpdate();

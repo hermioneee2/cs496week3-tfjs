@@ -188,7 +188,6 @@ export class Camera {
     if (pose.keypoints3D != null && params.STATE.modelConfig.render3D) {
       this.drawKeypoints3D(pose.keypoints3D);
     }
-    // this.drawMyIcon();
   }
 
   /**
