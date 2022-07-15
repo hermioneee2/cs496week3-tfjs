@@ -184,7 +184,7 @@ async function renderResult() {
   // different model. If during model change, the result is from an old model,
   // which shouldn't be rendered.
   if (poses && poses.length > 0 && !STATE.isModelChanged) {
-    camera.drawResults(poses);
+    // camera.drawResults(poses);
     x_lWrist = poses[0].keypoints[9].x;
     y_lWrist = poses[0].keypoints[9].y;
     x_rWrist = poses[0].keypoints[10].x;
