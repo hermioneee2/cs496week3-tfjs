@@ -184,7 +184,7 @@ async function renderResult() {
   // different model. If during model change, the result is from an old model,
   // which shouldn't be rendered.
   if (poses && poses.length > 0 && !STATE.isModelChanged) {
-    // camera.drawResults(poses);
+    camera.drawResults(poses);
     x_lWrist = poses[0].keypoints[9].x;
     y_lWrist = poses[0].keypoints[9].y;
     x_rWrist = poses[0].keypoints[10].x;
@@ -192,18 +192,18 @@ async function renderResult() {
   }
 
   //공을 잡으면 location 바뀜
-  //left
-  if (ballLeftCaughtFlag == 1) {
-    xLeftLocation = Math.random() * VIDEO_WIDTH; //TODO: VIDEO_SIZE width
-    yLeftLocation = Math.random() * VIDEO_HEIGHT; //TODO: VIDEO_SIZE height
+  // //left
+  // if (ballLeftCaughtFlag == 1) {
+  //   xLeftLocation = Math.random() * VIDEO_WIDTH;
+  //   yLeftLocation = Math.random() * VIDEO_HEIGHT;
 
-    ballLeftCaughtFlag = 0;
-  }
+  //   ballLeftCaughtFlag = 0;
+  // }
 
   //right
   if (ballRightCaughtFlag == 1) {
-    xRightLocation = Math.random() * VIDEO_WIDTH; //TODO: VIDEO_SIZE width
-    yRightLocation = Math.random() * VIDEO_HEIGHT; //TODO: VIDEO_SIZE height
+    xRightLocation = Math.random() * VIDEO_WIDTH;
+    yRightLocation = Math.random() * VIDEO_HEIGHT;
 
     ballRightCaughtFlag = 0;
   }
@@ -211,14 +211,14 @@ async function renderResult() {
   let radius = 10;
 
   //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
-  //left
-  if (
-    !ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation, radius)
-  ) {
-    camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
-  } else {
-    ballLeftCaughtFlag = 1;
-  }
+  // //left
+  // if (
+  //   !ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation, radius)
+  // ) {
+  //   camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
+  // } else {
+  //   ballLeftCaughtFlag = 1;
+  // }
 
   //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
   //right
@@ -260,6 +260,11 @@ async function app() {
   detector = await createDetector();
 
   renderPrediction();
+
+  setInterval(() => {
+    xRightLocation = Math.random() * VIDEO_WIDTH;
+    yRightLocation = Math.random() * VIDEO_HEIGHT;
+  }, 5000);
 }
 
 app();
