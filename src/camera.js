@@ -221,6 +221,20 @@ export class Camera {
   }
 
   /**
+   * Draw ball for left wrist on canvas
+   */
+  drawExplodedBall(xLocation, yLocation, radius) {
+    this.ctx.fillStyle = "Yellow";
+    this.ctx.strokeStyle = "White";
+    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+
+    const circle2 = new Path2D();
+    circle2.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
+    this.ctx.fill(circle2);
+    this.ctx.stroke(circle2);
+  }
+
+  /**
    * Draw the keypoints on the video.
    * @param keypoints A list of keypoints.
    */

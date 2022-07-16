@@ -37,12 +37,22 @@ let inferenceTimeSum = 0,
   lastPanelUpdate = 0;
 let rafId;
 
-let ballRightCaughtFlag = 0;
-let ballLeftCaughtFlag = 0;
-let xRightLocation = 200; //initial location
-let yRightLocation = 200;
-let xLeftLocation = 600; //initial location
-let yLeftLocation = 200;
+let ballRightCaughtFlag = 1;
+let ballLeftCaughtFlag = 1;
+let xRightLocation; //initial location
+let yRightLocation;
+let xLeftLocation; //initial location
+let yLeftLocation;
+let radius = 10;
+
+let numOfExplodedBall = 0;
+let xLeftExploded1Location = 0; //initial location
+let yLeftExploded1Location = 0;
+let xLeftExploded2Location = 0; //initial location
+let yLeftExploded2Location = 0;
+let xLeftExploded3Location = 0; //initial location
+let yLeftExploded3Location = 0;
+let timeoutID;
 
 async function createDetector() {
   switch (STATE.model) {
@@ -192,13 +202,14 @@ async function renderResult() {
   }
 
   //공을 잡으면 location 바뀜
-  // //left
-  // if (ballLeftCaughtFlag == 1) {
-  //   xLeftLocation = Math.random() * VIDEO_WIDTH;
-  //   yLeftLocation = Math.random() * VIDEO_HEIGHT;
+  //left
+  if (ballLeftCaughtFlag == 1) {
+    xLeftLocation = Math.random() * VIDEO_WIDTH;
+    yLeftLocation = Math.random() * VIDEO_HEIGHT;
 
-  //   ballLeftCaughtFlag = 0;
-  // }
+    timeoutID = setTimeout(setExplodedBall, 5000);
+    ballLeftCaughtFlag = 0;
+  }
 
   //right
   if (ballRightCaughtFlag == 1) {
@@ -208,17 +219,38 @@ async function renderResult() {
     ballRightCaughtFlag = 0;
   }
 
-  let radius = 10;
+  if (numOfExplodedBall > 0) {
+    camera.drawExplodedBall(
+      xLeftExploded1Location,
+      yLeftExploded1Location,
+      radius
+    );
+    if (numOfExplodedBall > 1) {
+      camera.drawExplodedBall(
+        xLeftExploded2Location,
+        yLeftExploded2Location,
+        radius
+      );
+      if (numOfExplodedBall > 2) {
+        camera.drawExplodedBall(
+          xLeftExploded3Location,
+          yLeftExploded3Location,
+          radius
+        );
+      }
+    }
+  }
 
   //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
-  // //left
-  // if (
-  //   !ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation, radius)
-  // ) {
-  //   camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
-  // } else {
-  //   ballLeftCaughtFlag = 1;
-  // }
+  //left
+  if (
+    !ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation, radius)
+  ) {
+    camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
+  } else {
+    ballLeftCaughtFlag = 1;
+    clearTimeout(timeoutID);
+  }
 
   //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
   //right
@@ -242,6 +274,28 @@ function ballInBoundary(x_wrist, y_wrist, xLocation, yLocation, radius) {
   return false;
 }
 
+function setExplodedBall() {
+  console.log("setExplodedBall");
+  if (numOfExplodedBall == 0) {
+    camera.drawExplodedBall(xLeftLocation, yLeftLocation, radius);
+    xLeftExploded1Location = xLeftLocation;
+    yLeftExploded1Location = yLeftLocation;
+    numOfExplodedBall++;
+  } else if (numOfExplodedBall == 1) {
+    camera.drawExplodedBall(xLeftLocation, yLeftLocation, radius);
+    xLeftExploded2Location = xLeftLocation;
+    yLeftExploded2Location = yLeftLocation;
+    numOfExplodedBall++;
+  } else if (numOfExplodedBall == 2) {
+    camera.drawExplodedBall(xLeftLocation, yLeftLocation, radius);
+    xLeftExploded3Location = xLeftLocation;
+    yLeftExploded3Location = yLeftLocation;
+    numOfExplodedBall++;
+  }
+  // explode 하면 잡은 것처럼 자리도 바꿔주고 setTimeout 재개.
+  ballLeftCaughtFlag = 1;
+}
+
 async function renderPrediction() {
   await checkGuiUpdate();
 
@@ -261,6 +315,7 @@ async function app() {
 
   renderPrediction();
 
+  // change the location of good tomato in 5sec
   setInterval(() => {
     xRightLocation = Math.random() * VIDEO_WIDTH;
     yRightLocation = Math.random() * VIDEO_HEIGHT;
