@@ -16,14 +16,40 @@ limitations under the License.
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0, user-scalable=no">
     <style>body {
         margin: 0;
+      }
+      #main {
+        position: relative;
+        margin: 0;
+      }
+      #canvas-wrapper,
+      #scatter-gl-container {
+        position: relative;
       }</style>
     <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
     <script src="/src.a2b27638.js" defer=""></script>
   </head>
   <body>
-    <div>hello</div>
-    <p id="password"></p>
-    <p id="appConnected"></p>
-    <input type="button" id="btnStart" value="Start Game" style="display: none">
+    <div id="intro">
+      <div>hello</div>
+      <p id="password"></p>
+      <p id="appConnected"></p>
+      <input type="button" id="btnStart" value="Start Game">
+    </div>
+    <div id="stats"></div>
+    <div id="main">
+      <div class="container">
+        <div class="canvas-wrapper">
+          <canvas id="output"></canvas>
+          <video id="video" playsinline="" style="
+              -webkit-transform: scaleX(-1);
+              transform: scaleX(-1);
+              visibility: hidden;
+              width: auto;
+              height: auto;
+            "></video>
+        </div>
+        <div id="scatter-gl-container"></div>
+      </div>
+    </div>
   </body>
 </html>
