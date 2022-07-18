@@ -27,6 +27,15 @@ btnStart.addEventListener("click", function () {
   app();
   document.getElementById("intro").style.display = "none";
 });
+console.log(btnStart);
+
+var btnRestart = document.getElementById("btnRestart");
+console.log(btnRestart);
+btnRestart.addEventListener("click", function () {
+  console.log("clicked");
+  app();
+  document.getElementById("ending").style.display = "none";
+});
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -85,6 +94,7 @@ let yLeftExploded2Location = 0;
 let xLeftExploded3Location = 0; //initial location
 let yLeftExploded3Location = 0;
 let timeoutID;
+let intervalID;
 
 async function createDetector() {
   switch (STATE.model) {
@@ -307,7 +317,7 @@ function ballInBoundary(x_wrist, y_wrist, xLocation, yLocation, radius) {
 }
 
 function setExplodedBall() {
-  console.log("setExplodedBall");
+  console.log("setExplodedBallHere");
   if (numOfExplodedBall == 0) {
     camera.drawExplodedBall(xLeftLocation, yLeftLocation, radius);
     xLeftExploded1Location = xLeftLocation;
@@ -323,9 +333,41 @@ function setExplodedBall() {
     xLeftExploded3Location = xLeftLocation;
     yLeftExploded3Location = yLeftLocation;
     numOfExplodedBall++;
+    cancelAnimationFrame(rafId);
+    console.log("THE END");
+    document.getElementById("ending").style.display = "block";
+
+    initialize();
+    // setTimeout(() => {
+    //   console.log("THE END");
+    //   // document.getElementById("main").style.display = "none";
+    //   document.getElementById("ending").style.display = "block";
+    //   clearInterval(intervalID);
+    // }, 4000);
   }
   // explode 하면 잡은 것처럼 자리도 바꿔주고 setTimeout 재개.
   ballLeftCaughtFlag = 1;
+}
+
+function initialize() {
+  startInferenceTime = 0;
+  numInferences = 0;
+  inferenceTimeSum = 0;
+  lastPanelUpdate = 0;
+  ballRightCaughtFlag = 1;
+  ballLeftCaughtFlag = 1;
+  radius = 10;
+  numOfExplodedBall = 0;
+  xLeftExploded1Location = 0; //initial location
+  yLeftExploded1Location = 0;
+  xLeftExploded2Location = 0; //initial location
+  yLeftExploded2Location = 0;
+  xLeftExploded3Location = 0; //initial location
+  yLeftExploded3Location = 0;
+  clearTimeout(timeoutID);
+  clearInterval(intervalID);
+  camera = null;
+  detector = null;
 }
 
 async function renderPrediction() {
@@ -348,7 +390,7 @@ async function app() {
   renderPrediction();
 
   // change the location of good tomato in 5sec
-  setInterval(() => {
+  intervalID = setInterval(() => {
     xRightLocation = Math.random() * VIDEO_WIDTH;
     yRightLocation = Math.random() * VIDEO_HEIGHT;
   }, 5000);
