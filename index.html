@@ -22,11 +22,18 @@ limitations under the License.
         margin: 0;
       }
     </style>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
     <script src="src/index.js" defer></script>
   </head>
   <body>
     <div>hello</div>
     <p id="password"></p>
-    <input type="button" id="btnStart" value="Start Game" />
+    <p id="appConnected"></p>
+    <input
+      type="button"
+      id="btnStart"
+      value="Start Game"
+      style="display: none"
+    />
   </body>
 </html>
