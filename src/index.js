@@ -12,25 +12,25 @@ document.getElementById("password").innerHTML = pw;
 var btnStart = document.getElementById("btnStart");
 
 //REAL CODE
-// socket.on("appConnected", () => {
-//   document.getElementById("appConnected").innerHTML =
-//     "App is now connected. Do you want to start game?";
-//   btnStart.style.display = "block";
-//   // window.location.href = "./main.html";
-// });
+socket.on("appConnected", () => {
+  document.getElementById("appConnected").innerHTML =
+    "App is now connected. Do you want to start game?";
+  btnStart.style.display = "block";
+  // window.location.href = "./main.html";
+});
 
-// btnStart.addEventListener("click", function () {
-//   socket.emit("startGame", "startGame");
-//   app();
-//   document.getElementById("intro").style.display = "none";
-// });
-
-// SELFTESTING CODE
 btnStart.addEventListener("click", function () {
+  socket.emit("startGame", "startGame");
   app();
   document.getElementById("intro").style.display = "none";
 });
-console.log(btnStart);
+
+// // SELFTESTING CODE
+// btnStart.addEventListener("click", function () {
+//   app();
+//   document.getElementById("intro").style.display = "none";
+// });
+// console.log(btnStart);
 
 var btnRestart = document.getElementById("btnRestart");
 console.log(btnRestart);
@@ -307,6 +307,7 @@ async function renderResult() {
     camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
   } else {
     //go into mobile phone
+    socket.emit("getTomato", 1);
     console.log("bad one goes into app");
     ballLeftCaughtFlag = 1;
     clearTimeout(timeoutID);
@@ -319,6 +320,7 @@ async function renderResult() {
     camera.drawRightBall(xRightLocation, yRightLocation, radius);
   } else {
     //go into mobile phone
+    socket.emit("getTomato", 0);
     console.log("good one goes into app");
     ballRightCaughtFlag = 1;
   }
