@@ -11,6 +11,7 @@ document.getElementById("password").innerHTML = pw;
 
 var btnStart = document.getElementById("btnStart");
 
+//REAL CODE
 // socket.on("appConnected", () => {
 //   document.getElementById("appConnected").innerHTML =
 //     "App is now connected. Do you want to start game?";
@@ -20,9 +21,11 @@ var btnStart = document.getElementById("btnStart");
 
 // btnStart.addEventListener("click", function () {
 //   socket.emit("startGame", "startGame");
-//   window.location.href = "./main.html";
+//   app();
+//   document.getElementById("intro").style.display = "none";
 // });
 
+// SELFTESTING CODE
 btnStart.addEventListener("click", function () {
   app();
   document.getElementById("intro").style.display = "none";
@@ -284,23 +287,47 @@ async function renderResult() {
   }
 
   //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
-  //left
+  //catch leftball with left hand => successfully hit it away
   if (
     !ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation, radius)
   ) {
     camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
   } else {
+    console.log("successfully hit it away");
     ballLeftCaughtFlag = 1;
     clearTimeout(timeoutID);
   }
 
-  //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
-  //right
+  //catch leftball with right hand => bad one goes into app
+  if (
+    !ballInBoundary(x_rWrist, y_rWrist, xLeftLocation, yLeftLocation, radius)
+  ) {
+    camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
+  } else {
+    //go into mobile phone
+    console.log("bad one goes into app");
+    ballLeftCaughtFlag = 1;
+    clearTimeout(timeoutID);
+  }
+
+  //catch rightball with right hand => good one goes into app
   if (
     !ballInBoundary(x_rWrist, y_rWrist, xRightLocation, yRightLocation, radius)
   ) {
     camera.drawRightBall(xRightLocation, yRightLocation, radius);
   } else {
+    //go into mobile phone
+    console.log("good one goes into app");
+    ballRightCaughtFlag = 1;
+  }
+
+  //catch rightball with left hand => accidentally hit it away
+  if (
+    !ballInBoundary(x_lWrist, y_lWrist, xRightLocation, yRightLocation, radius)
+  ) {
+    camera.drawRightBall(xRightLocation, yRightLocation, radius);
+  } else {
+    console.log("accidentally hit it away");
     ballRightCaughtFlag = 1;
   }
 }
