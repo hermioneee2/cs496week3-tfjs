@@ -221,7 +221,7 @@ export class Camera {
   }
 
   /**
-   * Draw ball for left wrist on canvas
+   * Draw exploded ball on canvas
    */
   drawExplodedBall(xLocation, yLocation, radius) {
     this.ctx.fillStyle = "Yellow";
@@ -232,6 +232,34 @@ export class Camera {
     circle2.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
     this.ctx.fill(circle2);
     this.ctx.stroke(circle2);
+  }
+
+  /**
+   * Draw exploded ball on canvas
+   */
+  drawLeftHand(xLocation, yLocation) {
+    this.ctx.fillStyle = "Blue";
+    this.ctx.strokeStyle = "White";
+    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+
+    const circle3 = new Path2D();
+    circle3.arc(xLocation, yLocation, 5 * 2, 0, 2 * Math.PI);
+    this.ctx.fill(circle3);
+    this.ctx.stroke(circle3);
+  }
+
+  /**
+   * Draw exploded ball on canvas
+   */
+  drawRightHand(xLocation, yLocation) {
+    this.ctx.fillStyle = "Red";
+    this.ctx.strokeStyle = "White";
+    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+
+    const circle4 = new Path2D();
+    circle4.arc(xLocation, yLocation, 5 * 2, 0, 2 * Math.PI);
+    this.ctx.fill(circle4);
+    this.ctx.stroke(circle4);
   }
 
   /**
