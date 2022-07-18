@@ -1,22 +1,11 @@
-// var btn = document.getElementsByClassName("btn");
+// let pw = Math.floor(Math.random() * 8999) + 1000;
 
-// btn.addEventListener("click", goToMain);
+let pw = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
 
-// function goToMain() {
-//   if (1 == 2) {
-//   } else {
-//     window.location.href = "./main.html";
-//   }
-// }
-
-// function change_page() {
-//   if (1 == 2) {
-//   } else {
-//     window.location.href = "./main.html";
-//   }
-// }
+document.getElementById("password").innerHTML = pw;
 
 var btnStart = document.getElementById("btnStart");
+
 btnStart.addEventListener("click", function () {
   if (1 == 2) {
   } else {
