@@ -1,3 +1,9 @@
+var timer;
+var hour = 0;
+var min = 0;
+var sec = 0;
+var time = 0;
+
 const socket = io.connect("http://192.249.18.153:443", {
   transports: ["websocket"],
 });
@@ -11,34 +17,96 @@ document.getElementById("password").innerHTML = pw;
 
 var btnStart = document.getElementById("btnStart");
 
-//REAL CODE
-socket.on("appConnected", () => {
-  document.getElementById("appConnected").innerHTML =
-    "App is now connected. Do you want to start game?";
-  btnStart.style.display = "block";
-  // window.location.href = "./main.html";
-});
+// //REAL CODE
+// socket.on("appConnected", () => {
+//   document.getElementById("appConnected").innerHTML =
+//     "App is now connected. Do you want to start game?";
+//   btnStart.style.display = "block";
+//   // window.location.href = "./main.html";
+// });
 
-btnStart.addEventListener("click", function () {
-  socket.emit("startGame", "startGame");
-  app();
-  document.getElementById("intro").style.display = "none";
-});
-
-// // SELFTESTING CODE
 // btnStart.addEventListener("click", function () {
+//   socket.emit("startGame", "startGame");
 //   app();
+//   document.getElementById("main").style.display = "block";
 //   document.getElementById("intro").style.display = "none";
 // });
-// console.log(btnStart);
+
+// SELFTESTING CODE
+btnStart.addEventListener("click", function () {
+  app();
+  document.getElementById("main").style.display = "block";
+  document.getElementById("intro").style.display = "none";
+});
 
 var btnRestart = document.getElementById("btnRestart");
 console.log(btnRestart);
 btnRestart.addEventListener("click", function () {
-  console.log("clicked");
+  console.log("btnRestart");
   app();
   document.getElementById("ending").style.display = "none";
+  socket.emit("restart", "restart");
+  time = 0;
+  // initialize();
+  console.log(numOfExplodedBall);
 });
+
+function startStopwatch() {
+  document.getElementById("time").innerHTML = "00:00:00";
+  hour = 0;
+  min = 0;
+  sec = 0;
+  time = 0;
+
+  timer = setInterval(function () {
+    time++;
+
+    min = Math.floor(time / 60);
+    hour = Math.floor(min / 60);
+    sec = time % 60;
+    min = min % 60;
+
+    var th = hour;
+    var tm = min;
+    var ts = sec;
+    if (th < 10) {
+      th = "0" + hour;
+    }
+    if (tm < 10) {
+      tm = "0" + min;
+    }
+    if (ts < 10) {
+      ts = "0" + sec;
+    }
+
+    document.getElementById("time").innerHTML = th + ":" + tm + ":" + ts;
+  }, 1000);
+}
+
+function stopStopwatch() {
+  clearInterval(timer);
+}
+
+socket.on("timeRequest", () => {
+  console.log("got time request");
+  socket.emit("timeReport", hour, min, sec);
+});
+
+socket.on("endGame", () => {
+  cancelAnimationFrame(rafId);
+  console.log("THE END");
+  document.getElementById("ending").style.display = "block";
+  initialize();
+  stopStopwatch();
+  console.log(numOfExplodedBall);
+});
+
+// var img2 = document.createElement("img"); // Use DOM HTMLImageElement
+// img2.src =
+//   "https://raw.githubusercontent.com/jsh-me/AndoridFallingView/main/app/src/main/res/drawable-v24/tomato_red2.png";
+// // img2.src = "../image/tomato.png";
+// document.body.appendChild(img2);
+// console.log(img2.src);
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -87,7 +155,8 @@ let xRightLocation; //initial location
 let yRightLocation;
 let xLeftLocation; //initial location
 let yLeftLocation;
-let radius = 10;
+let radius = 70;
+let detectRange = 30;
 
 let numOfExplodedBall = 0;
 let xLeftExploded1Location = 0; //initial location
@@ -254,7 +323,7 @@ async function renderResult() {
     xLeftLocation = Math.random() * VIDEO_WIDTH;
     yLeftLocation = Math.random() * VIDEO_HEIGHT;
 
-    timeoutID = setTimeout(setExplodedBall, 5000);
+    timeoutID = setTimeout(setExplodedBall, 7000);
     ballLeftCaughtFlag = 0;
   }
 
@@ -290,9 +359,7 @@ async function renderResult() {
 
   //공을 잡으면 그림을 그리지 않고 잡았다는 것을 알림.
   //catch leftball with left hand => successfully hit it away
-  if (
-    !ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation, radius)
-  ) {
+  if (!ballInBoundary(x_lWrist, y_lWrist, xLeftLocation, yLeftLocation)) {
     camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
   } else {
     console.log("successfully hit it away");
@@ -301,9 +368,7 @@ async function renderResult() {
   }
 
   //catch leftball with right hand => bad one goes into app
-  if (
-    !ballInBoundary(x_rWrist, y_rWrist, xLeftLocation, yLeftLocation, radius)
-  ) {
+  if (!ballInBoundary(x_rWrist, y_rWrist, xLeftLocation, yLeftLocation)) {
     camera.drawLeftBall(xLeftLocation, yLeftLocation, radius);
   } else {
     //go into mobile phone
@@ -314,9 +379,7 @@ async function renderResult() {
   }
 
   //catch rightball with right hand => good one goes into app
-  if (
-    !ballInBoundary(x_rWrist, y_rWrist, xRightLocation, yRightLocation, radius)
-  ) {
+  if (!ballInBoundary(x_rWrist, y_rWrist, xRightLocation, yRightLocation)) {
     camera.drawRightBall(xRightLocation, yRightLocation, radius);
   } else {
     //go into mobile phone
@@ -326,9 +389,7 @@ async function renderResult() {
   }
 
   //catch rightball with left hand => accidentally hit it away
-  if (
-    !ballInBoundary(x_lWrist, y_lWrist, xRightLocation, yRightLocation, radius)
-  ) {
+  if (!ballInBoundary(x_lWrist, y_lWrist, xRightLocation, yRightLocation)) {
     camera.drawRightBall(xRightLocation, yRightLocation, radius);
   } else {
     console.log("accidentally hit it away");
@@ -336,11 +397,11 @@ async function renderResult() {
   }
 }
 
-function ballInBoundary(x_wrist, y_wrist, xLocation, yLocation, radius) {
-  let xMin = xLocation - radius;
-  let xMax = xLocation + radius;
-  let yMin = yLocation - radius;
-  let yMax = yLocation + radius;
+function ballInBoundary(x_wrist, y_wrist, xLocation, yLocation) {
+  let xMin = xLocation - detectRange;
+  let xMax = xLocation + detectRange;
+  let yMin = yLocation - detectRange;
+  let yMax = yLocation + detectRange;
 
   if (xMin < x_wrist && x_wrist < xMax && yMin < y_wrist && y_wrist < yMax)
     return true;
@@ -369,6 +430,9 @@ function setExplodedBall() {
     document.getElementById("ending").style.display = "block";
 
     initialize();
+    stopStopwatch();
+    socket.emit("endGame", "endGame");
+
     // setTimeout(() => {
     //   console.log("THE END");
     //   // document.getElementById("main").style.display = "none";
@@ -387,7 +451,6 @@ function initialize() {
   lastPanelUpdate = 0;
   ballRightCaughtFlag = 1;
   ballLeftCaughtFlag = 1;
-  radius = 10;
   numOfExplodedBall = 0;
   xLeftExploded1Location = 0; //initial location
   yLeftExploded1Location = 0;
@@ -417,6 +480,8 @@ async function app() {
   await setBackendAndEnvFlags(STATE.flags, STATE.backend);
 
   detector = await createDetector();
+
+  startStopwatch();
 
   renderPrediction();
 

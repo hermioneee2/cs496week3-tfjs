@@ -71,6 +71,7 @@ const COLOR_PALETTE = [
   "#3cb44b",
   "#a9a9a9",
 ];
+
 export class Camera {
   constructor() {
     this.video = document.getElementById("video");
@@ -83,6 +84,15 @@ export class Camera {
       styles: { polyline: { defaultOpacity: 1, deselectedOpacity: 1 } },
     });
     this.scatterGLHasInitialized = false;
+    this.redTomato = new Image(); // Image constructor
+    this.redTomato.src =
+      "https://raw.githubusercontent.com/jsh-me/AndoridFallingView/main/app/src/main/res/drawable-v24/tomato_red2.png";
+    this.greenTomato = new Image(); // Image constructor
+    this.greenTomato.src =
+      "https://raw.githubusercontent.com/jsh-me/AndoridFallingView/main/app/src/main/res/drawable-v24/tomato_green2.png";
+    this.explodedTomato = new Image(); // Image constructor
+    this.explodedTomato.src =
+      "https://uca8ccddc17e4eb92f53565b63f9.previews.dropboxusercontent.com/p/thumb/ABkHkiPRDzE2bpoZRphbXdF1WcQ5Ci4kTCvgaoO6uIUFG1aoMqYV9hqGrLbuAkbX_lxusIb0HqZ3LvLxMhhNXSjLkzBlpL4Ztd5Up1B3YvJomZ9fJEiv1ojhcSVbrAkIccTGS10qWbm5ahuGHPqSdLvlTIbcO0TkYBl1IWOpiOeKGIX1izVMMi3WeSEVu7kKBQ5f95JTwmvn89KXNpm2i_bVSOKtAgItk1xeJ6lA9G4acKlIDQQUxFKi3b2jGgfX9QJvMc2AfWmPW3xr_KvUGlRGz9JZDjRXOA-MVzONZY-ToC4JdY2M6dFk4WYCVzE2jJPSvG4ctuAlnVoGbv7FomIOmYcZbS-jYRYfEVSKlCZZCWvVa1xsKuteDfztPwWGVCaHDslSLyo5aUg8U0gO_K91I399vS5BDXGtdYLhRjfttg/p.png";
   }
 
   /**
@@ -196,42 +206,51 @@ export class Camera {
    * Draw ball for right wrist on canvas
    */
   drawRightBall(xLocation, yLocation, radius) {
-    this.ctx.fillStyle = "Red";
-    this.ctx.strokeStyle = "White";
-    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+    // this.ctx.fillStyle = "Red";
+    // this.ctx.strokeStyle = "White";
+    // // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
 
-    const circle = new Path2D();
-    circle.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
-    this.ctx.fill(circle);
-    this.ctx.stroke(circle);
+    // const circle = new Path2D();
+    // circle.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
+    // this.ctx.fill(circle);
+    // this.ctx.stroke(circle);
+    this.ctx.drawImage(this.redTomato, xLocation, yLocation, radius, radius);
   }
 
   /**
    * Draw ball for left wrist on canvas
    */
   drawLeftBall(xLocation, yLocation, radius) {
-    this.ctx.fillStyle = "Blue";
-    this.ctx.strokeStyle = "White";
-    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+    // this.ctx.fillStyle = "Blue";
+    // this.ctx.strokeStyle = "White";
+    // // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
 
-    const circle2 = new Path2D();
-    circle2.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
-    this.ctx.fill(circle2);
-    this.ctx.stroke(circle2);
+    // const circle2 = new Path2D();
+    // circle2.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
+    // this.ctx.fill(circle2);
+    // this.ctx.stroke(circle2);
+    this.ctx.drawImage(this.greenTomato, xLocation, yLocation, radius, radius);
   }
 
   /**
    * Draw exploded ball on canvas
    */
   drawExplodedBall(xLocation, yLocation, radius) {
-    this.ctx.fillStyle = "Yellow";
-    this.ctx.strokeStyle = "White";
-    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+    // this.ctx.fillStyle = "Yellow";
+    // this.ctx.strokeStyle = "White";
+    // // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
 
-    const circle2 = new Path2D();
-    circle2.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
-    this.ctx.fill(circle2);
-    this.ctx.stroke(circle2);
+    // const circle2 = new Path2D();
+    // circle2.arc(xLocation, yLocation, radius * 2, 0, 2 * Math.PI);
+    // this.ctx.fill(circle2);
+    // this.ctx.stroke(circle2);
+    this.ctx.drawImage(
+      this.explodedTomato,
+      xLocation,
+      yLocation,
+      radius,
+      radius
+    );
   }
 
   /**

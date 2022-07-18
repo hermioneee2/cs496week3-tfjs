@@ -24,6 +24,16 @@ limitations under the License.
       #canvas-wrapper,
       #scatter-gl-container {
         position: relative;
+      }
+      .timerBox {
+        width: 200px;
+        outline: 2px solid black;
+      }
+      .timerBox .time {
+        font-size: 30pt;
+        color: #4c4c4c;
+        text-align: center;
+        font-family: sans-serif;
       }</style>
     <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
     <script src="/src.a2b27638.js" defer=""></script>
@@ -33,16 +43,24 @@ limitations under the License.
       <div>hello</div>
       <p id="password"></p>
       <p id="appConnected"></p>
-      <input type="button" id="btnStart" value="Start Game" style="display: none">
-      <!-- <input type="button" id="btnStart" value="Start Game" /> -->
+      <!-- <input
+        type="button"
+        id="btnStart"
+        value="Start Game"
+        style="display: none"
+      /> -->
+      <input type="button" id="btnStart" value="Start Game">
     </div>
     <div id="ending" style="display: none">
       <div>the end</div>
       <input type="button" id="btnRestart" value="Restart">
     </div>
     <div id="stats"></div>
-    <div id="main">
+    <div id="main" style="display: none">
       <div class="container">
+        <div id="timerBox" class="timerBox">
+          <div id="time" class="time">00:00:00</div>
+        </div>
         <div class="canvas-wrapper">
           <canvas id="output"></canvas>
           <video id="video" playsinline="" style="
