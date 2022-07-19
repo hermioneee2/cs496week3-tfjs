@@ -25,8 +25,8 @@ export const VIDEO_SIZE = {
   "640 X 360": { width: 640, height: 360 },
   "360 X 270": { width: 360, height: 270 },
 };
-export const VIDEO_HEIGHT = 720; //[added]
-export const VIDEO_WIDTH = 1280;
+export const VIDEO_HEIGHT = 562; //[added]
+export const VIDEO_WIDTH = 1000;
 
 export const MOVENET_CONFIG = {
   maxPoses: 1,
