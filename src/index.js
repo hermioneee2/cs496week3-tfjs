@@ -320,8 +320,10 @@ async function renderResult() {
   //공을 잡으면 location 바뀜
   //left
   if (ballLeftCaughtFlag == 1) {
-    xLeftLocation = Math.random() * VIDEO_WIDTH;
-    yLeftLocation = Math.random() * VIDEO_HEIGHT;
+    xLeftLocation =
+      Math.random() * (VIDEO_WIDTH - radius * 2 - 50) + radius + 25;
+    yLeftLocation =
+      Math.random() * (VIDEO_HEIGHT - radius * 2 - 50) + radius + 25;
 
     timeoutID = setTimeout(setExplodedBall, 7000);
     ballLeftCaughtFlag = 0;
@@ -329,8 +331,12 @@ async function renderResult() {
 
   //right
   if (ballRightCaughtFlag == 1) {
-    xRightLocation = Math.random() * VIDEO_WIDTH;
-    yRightLocation = Math.random() * VIDEO_HEIGHT;
+    // xRightLocation = Math.random() * VIDEO_WIDTH;
+    // yRightLocation = Math.random() * VIDEO_HEIGHT;
+    xRightLocation =
+      Math.random() * (VIDEO_WIDTH - radius * 2 - 50) + radius + 25;
+    yRightLocation =
+      Math.random() * (VIDEO_HEIGHT - radius * 2 - 50) + radius + 25;
 
     ballRightCaughtFlag = 0;
   }
@@ -487,8 +493,12 @@ async function app() {
 
   // change the location of good tomato in 5sec
   intervalID = setInterval(() => {
-    xRightLocation = Math.random() * VIDEO_WIDTH;
-    yRightLocation = Math.random() * VIDEO_HEIGHT;
+    // xRightLocation = Math.random() * VIDEO_WIDTH;
+    // yRightLocation = Math.random() * VIDEO_HEIGHT;
+    xRightLocation =
+      Math.random() * (VIDEO_WIDTH - radius * 2 - 50) + radius + 25;
+    yRightLocation =
+      Math.random() * (VIDEO_HEIGHT - radius * 2 - 50) + radius + 25;
   }, 5000);
 }
 
