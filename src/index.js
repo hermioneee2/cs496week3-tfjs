@@ -1,8 +1,10 @@
 var timer;
+var countDowner;
 var hour = 0;
 var min = 0;
 var sec = 0;
 var time = 0;
+var countDown = 0;
 
 const socket = io.connect("http://192.249.18.153:443", {
   transports: ["websocket"],
@@ -85,6 +87,21 @@ function startStopwatch() {
 
 function stopStopwatch() {
   clearInterval(timer);
+}
+
+function startCountDown() {
+  countDown = 7;
+
+  document.getElementById("explodedCountDown").innerHTML = countDown;
+
+  countDowner = setInterval(function () {
+    countDown--;
+    document.getElementById("explodedCountDown").innerHTML = countDown;
+  }, 1000);
+}
+
+function stopCountDown() {
+  clearInterval(countDowner);
 }
 
 socket.on("timeRequest", () => {
@@ -327,7 +344,7 @@ async function renderResult() {
       Math.random() * (VIDEO_WIDTH - radius * 2 - 50) + radius + 25;
     yLeftLocation =
       Math.random() * (VIDEO_HEIGHT - radius * 2 - 50) + radius + 25;
-
+    startCountDown();
     timeoutID = setTimeout(setExplodedBall, 7000);
     ballLeftCaughtFlag = 0;
   }
@@ -419,6 +436,7 @@ function ballInBoundary(x_wrist, y_wrist, xLocation, yLocation) {
 
 function setExplodedBall() {
   console.log("setExplodedBallHere");
+  stopCountDown();
   if (numOfExplodedBall == 0) {
     camera.drawExplodedBall(xLeftLocation, yLeftLocation, radius);
     xLeftExploded1Location = xLeftLocation;
