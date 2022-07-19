@@ -20,27 +20,27 @@ document.getElementById("password").innerHTML = pw;
 
 var btnStart = document.getElementById("btnStart");
 
-// //REAL CODE
-// socket.on("appConnected", () => {
-//   document.getElementById("appConnected").innerHTML =
-//     "App is now connected. Do you want to start game?";
-//   btnStart.style.display = "block";
-//   // window.location.href = "./main.html";
-// });
+//REAL CODE
+socket.on("appConnected", () => {
+  document.getElementById("appConnected").innerHTML =
+    "앱이 연결되었습니다. 게임을 시작하시겠습니까?";
+  btnStart.style.display = "block";
+  // window.location.href = "./main.html";
+});
 
-// btnStart.addEventListener("click", function () {
-//   socket.emit("startGame", "startGame");
-//   app();
-//   document.getElementById("main").style.display = "block";
-//   document.getElementById("intro").style.display = "none";
-// });
-
-// SELFTESTING CODE
 btnStart.addEventListener("click", function () {
+  socket.emit("startGame", "startGame");
   app();
   document.getElementById("main").style.display = "block";
   document.getElementById("intro").style.display = "none";
 });
+
+// // SELFTESTING CODE
+// btnStart.addEventListener("click", function () {
+//   app();
+//   document.getElementById("main").style.display = "block";
+//   document.getElementById("intro").style.display = "none";
+// });
 
 var btnRestart = document.getElementById("btnRestart");
 console.log(btnRestart);
@@ -116,17 +116,24 @@ socket.on("timeRequest", () => {
   socket.emit("timeReport", hour, min, sec);
 });
 
-socket.on("endGame", () => {
+socket.on("endGameApp", () => {
   cancelAnimationFrame(rafId);
   console.log("THE END");
   document.getElementById("ending").style.display = "block";
   initialize();
   stopStopwatch();
+  stopCountDown();
+  document.getElementById("explodedCountDown").innerHTML = countDown; //countdown set to 0
   document.getElementById("endingDesc1").innerHTML = "축하해요";
   document.getElementById("endingDesc2").innerHTML =
     "토마토 20개를 다 모았어요!";
   console.log(numOfExplodedBall);
 });
+
+// socket.on("countTomato", (obj) => {
+//   document.getElementById("tomatoRedNum").innerHTML = obj.good;
+//   document.getElementById("tomatoYellowNum").innerHTML = obj.bad;
+// });
 
 // var img2 = document.createElement("img"); // Use DOM HTMLImageElement
 // img2.src =
@@ -473,8 +480,10 @@ function setExplodedBall() {
 
     initialize();
     stopStopwatch();
+    stopCountDown();
+    document.getElementById("explodedCountDown").innerHTML = countDown; //countdown set to 0
 
-    socket.emit("endGame", "endGame");
+    socket.emit("endGameWeb", "endGameWeb");
 
     // setTimeout(() => {
     //   console.log("THE END");
@@ -501,6 +510,7 @@ function initialize() {
   yLeftExploded2Location = 0;
   xLeftExploded3Location = 0; //initial location
   yLeftExploded3Location = 0;
+  countDown = 0;
   clearTimeout(timeoutID);
   clearInterval(intervalID);
   camera = null;
