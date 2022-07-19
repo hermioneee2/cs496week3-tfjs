@@ -344,6 +344,7 @@ async function renderResult() {
       Math.random() * (VIDEO_WIDTH - radius * 2 - 50) + radius + 25;
     yLeftLocation =
       Math.random() * (VIDEO_HEIGHT - radius * 2 - 50) + radius + 25;
+    stopCountDown();
     startCountDown();
     timeoutID = setTimeout(setExplodedBall, 7000);
     ballLeftCaughtFlag = 0;
