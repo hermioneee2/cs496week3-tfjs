@@ -32,12 +32,17 @@ limitations under the License.
         src: url("/EF_Diary.2491c634.ttf") format("woff");
       }
 
-      #intro,
+      #intro {
+        font-family: "Diary";
+        margin: auto;
+        text-align: center;
+        margin-top: 10vh;
+      }
       #main {
         font-family: "Diary";
         margin: auto;
         text-align: center;
-        margin-top: 8vh;
+        margin-top: 4vh;
       }
       #title {
         font-family: "Diary";
@@ -51,8 +56,28 @@ limitations under the License.
       }
       #password {
         font-family: "Diary";
-        font-size: x-large;
+        font-size: xx-large;
         font-weight: 600;
+      }
+      #passwordDesc {
+        font-family: "Diary";
+        font-size: medium;
+        margin-top: 100px;
+      }
+      #btnStart {
+        border-color: #f13227;
+        border-radius: 50px;
+        background-color: #f13227;
+        color: white;
+        font-weight: 600;
+        font-family: "Diary";
+        font-size: large;
+        padding: 15px;
+        margin-top: 50px;
+      }
+      #appConnected {
+        font-family: "Diary";
+        font-size: medium;
       }
       #ending {
         font-family: "Diary";
@@ -60,14 +85,18 @@ limitations under the License.
         left: 50%;
         transform: translateX(-50%);
         border-radius: 30px;
-        display: none; /* Hidden by default */
+        display: flex; /* Hidden by default */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 150px;
         width: 1000px; /* Full width (cover the whole page) */
-        height: 562px; /* Full height (cover the whole page) */
+        height: 412px; /* Full height (cover the whole page) */
         background-color: rgba(
           0,
           0,
           0,
-          0.5
+          0.7
         ); /* Black background with opacity */
         z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
       }
@@ -93,13 +122,16 @@ limitations under the License.
       #dashboard {
         width: 900px;
         height: 80px;
-        background-color: beige;
+        /* background-color: beige; */
+        border: 3.5px solid #f13227; /* Green */
+        border-radius: 50px;
         position: relative;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 15px;
         display: flex;
         justify-content: space-between;
-        align-content: center;
+        align-items: center;
         padding-left: 20pt;
         padding-right: 20pt;
       }
@@ -127,7 +159,7 @@ limitations under the License.
       /* #collectedTomatoes {
         display: flex;
         justify-content: space-between;
-        align-content: center;
+        align-items: center;
       }
       .littleTomato {
         align-self: center;
@@ -135,12 +167,43 @@ limitations under the License.
         height: 50px;
       }
       #tomatoNum {
-        align-self: center;
         font-size: 24pt;
         font-weight: 600;
         margin-right: 20px;
         margin-left: 12px;
-      } */</style>
+      } */
+
+      .endingDesc {
+        align-self: center;
+        font-size: 24pt;
+        color: aliceblue;
+        margin-top: 20px;
+      }
+      #endingDesc1 {
+        font-size: 24pt;
+      }
+      #endingDesc2 {
+        font-size: 18pt;
+      }
+
+      /* #replayDesc {
+        align-self: center;
+        font-size: 14pt;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        color: aliceblue;
+      } */
+      #btnRestart {
+        border-color: #f13227;
+        border-radius: 50px;
+        background-color: #f13227;
+        color: white;
+        font-weight: 600;
+        font-family: "Diary";
+        font-size: large;
+        padding: 15px;
+        margin-top: 50px;
+      }</style>
     <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
     <script src="/src.a2b27638.js" defer=""></script>
   </head>
@@ -152,16 +215,16 @@ limitations under the License.
         <img class="tomato" src="https://uc4cf3af0a5cd5c4221ea2b84a25.previews.dropboxusercontent.com/p/thumb/ABmZ1E-zfVZYS2qTvPRHmzEuogxzhFW_Y0vfys0Zv4muY59S14dSmtDv_8_3a8jOoos0lO1IpgBg5BSD0Hs26X_p4FS23f2Epv1ST2ipjCatkHC4aA6_xHY7Nlb64QWFIs-6jXqSdooL7Q5TkRVGiZpgD3ikoeQ6Tk5YYO9H5WnIHmhMl_r5AaUjGxqJVkAtBDr91JLCvwOwJ6smm4dO9eZ_3OSB3iPMhY-NtrpPYKKE9aHvTkIx_uz6ytagc2QcA7Mg2Van3i-6v5KjlkKzs4mzuBcBA4FTXaQbLO5qdL-QiMLALk8l30LtNiPtVbg38tmg5dNGlSHMfimmxn8D20hOHxDBQYEouWeyjPVZ4YhD6QLceEfpBPwRM69cjkYs-EUoCvJbpaqHIqXqq75TzQ6v1d3d-_YVPLS-4YZvrhlVKA/p.png">
         <img class="tomato" src="https://uc2c5410c616c44bc9fb4291271b.previews.dropboxusercontent.com/p/thumb/ABm7Tgt4D4iLTPuvA29yXw_rCJ5aZilnfJ4mYgjJ2RzFTUQHxE4pV9DPVsUz9iXVDHoeWJWnWHjW1GzdYi3CqcsgwKAFobXXO8R0uH687pFZIN853ywmF7eciTZ4e5RMRmOASGB_VjNxJUuvcgXqXSFeq-d-5QGBBsxM7NWhzVxjHlAns0FvsuY6dUDE3lZD53pCEXR1VtkAisfNjFdnldXyoPtIw2U5XbZGi-Do6lCvlYAXe1JrhCb8EkRWg8btURts6LYmoOX7pO6hlKOjtOqRiETc9JfP7cLUpWvRUl6aTd_Sf6apvVcngDizBxY1fZpyUF31mZZwc0OLluH_HJsEb03AVd4T16wAC70KqQo3PcILk7hYrfkEJm_kztU1xxssbVRKYY5Ad_1clmFlVoDBHxqztYQsoLd4VrCfKJvpiQ/p.png">
       </div>
-
+      <p id="passwordDesc">앱에서 코드 4자리를 입력하세요!</p>
       <p id="password"></p>
       <p id="appConnected"></p>
       <!-- <input
         type="button"
         id="btnStart"
-        value="Start Game"
+        value="시작하기"
         style="display: none"
       /> -->
-      <input type="button" id="btnStart" value="Start Game">
+      <input type="button" id="btnStart" value="시작하기">
     </div>
     <div id="stats"></div>
     <div id="main" style="display: none">
@@ -191,8 +254,10 @@ limitations under the License.
         <div class="canvas-wrapper">
           <div id="ending" style="display: none">
             <div id="endingCover"></div>
-            <div>the end</div>
-            <input type="button" id="btnRestart" value="Restart">
+            <div class="endingDesc" id="endingDesc1"></div>
+            <div class="endingDesc" id="endingDesc2"></div>
+            <!-- <div id="replayDesc">다시 게임을 하려면 아래 버튼을 누르세요</div> -->
+            <input type="button" id="btnRestart" value="다시 도전!">
           </div>
           <div id="canvas-wrapperr">
             <canvas id="output"></canvas>

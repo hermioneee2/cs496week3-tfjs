@@ -98,6 +98,9 @@ socket.on("endGame", () => {
   document.getElementById("ending").style.display = "block";
   initialize();
   stopStopwatch();
+  document.getElementById("endingDesc1").innerHTML = "축하해요";
+  document.getElementById("endingDesc2").innerHTML =
+    "토마토 20개를 다 모았어요!";
   console.log(numOfExplodedBall);
 });
 
@@ -437,10 +440,14 @@ function setExplodedBall() {
 
     cancelAnimationFrame(rafId);
     console.log("THE END");
+    document.getElementById("endingDesc1").innerHTML = "아쉬워요";
+    document.getElementById("endingDesc2").innerHTML =
+      "토마토 3개가 다 터져버렸어요!";
     document.getElementById("ending").style.display = "block";
 
     initialize();
     stopStopwatch();
+
     socket.emit("endGame", "endGame");
 
     // setTimeout(() => {
