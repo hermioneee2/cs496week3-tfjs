@@ -17,27 +17,27 @@ document.getElementById("password").innerHTML = pw;
 
 var btnStart = document.getElementById("btnStart");
 
-// //REAL CODE
-// socket.on("appConnected", () => {
-//   document.getElementById("appConnected").innerHTML =
-//     "App is now connected. Do you want to start game?";
-//   btnStart.style.display = "block";
-//   // window.location.href = "./main.html";
-// });
+//REAL CODE
+socket.on("appConnected", () => {
+  document.getElementById("appConnected").innerHTML =
+    "App is now connected. Do you want to start game?";
+  btnStart.style.display = "block";
+  // window.location.href = "./main.html";
+});
 
-// btnStart.addEventListener("click", function () {
-//   socket.emit("startGame", "startGame");
-//   app();
-//   document.getElementById("main").style.display = "block";
-//   document.getElementById("intro").style.display = "none";
-// });
-
-// SELFTESTING CODE
 btnStart.addEventListener("click", function () {
+  socket.emit("startGame", "startGame");
   app();
   document.getElementById("main").style.display = "block";
   document.getElementById("intro").style.display = "none";
 });
+
+// // SELFTESTING CODE
+// btnStart.addEventListener("click", function () {
+//   app();
+//   document.getElementById("main").style.display = "block";
+//   document.getElementById("intro").style.display = "none";
+// });
 
 var btnRestart = document.getElementById("btnRestart");
 console.log(btnRestart);
@@ -156,7 +156,7 @@ let yRightLocation;
 let xLeftLocation; //initial location
 let yLeftLocation;
 let radius = 70;
-let detectRange = 30;
+let detectRange = 25;
 
 let numOfExplodedBall = 0;
 let xLeftExploded1Location = 0; //initial location

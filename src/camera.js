@@ -86,13 +86,20 @@ export class Camera {
     this.scatterGLHasInitialized = false;
     this.redTomato = new Image(); // Image constructor
     this.redTomato.src =
-      "https://raw.githubusercontent.com/jsh-me/AndoridFallingView/main/app/src/main/res/drawable-v24/tomato_red2.png";
+      "https://uc2c5410c616c44bc9fb4291271b.previews.dropboxusercontent.com/p/thumb/ABm7Tgt4D4iLTPuvA29yXw_rCJ5aZilnfJ4mYgjJ2RzFTUQHxE4pV9DPVsUz9iXVDHoeWJWnWHjW1GzdYi3CqcsgwKAFobXXO8R0uH687pFZIN853ywmF7eciTZ4e5RMRmOASGB_VjNxJUuvcgXqXSFeq-d-5QGBBsxM7NWhzVxjHlAns0FvsuY6dUDE3lZD53pCEXR1VtkAisfNjFdnldXyoPtIw2U5XbZGi-Do6lCvlYAXe1JrhCb8EkRWg8btURts6LYmoOX7pO6hlKOjtOqRiETc9JfP7cLUpWvRUl6aTd_Sf6apvVcngDizBxY1fZpyUF31mZZwc0OLluH_HJsEb03AVd4T16wAC70KqQo3PcILk7hYrfkEJm_kztU1xxssbVRKYY5Ad_1clmFlVoDBHxqztYQsoLd4VrCfKJvpiQ/p.png";
     this.greenTomato = new Image(); // Image constructor
     this.greenTomato.src =
-      "https://raw.githubusercontent.com/jsh-me/AndoridFallingView/main/app/src/main/res/drawable-v24/tomato_green2.png";
+      "https://uc4cf3af0a5cd5c4221ea2b84a25.previews.dropboxusercontent.com/p/thumb/ABmZ1E-zfVZYS2qTvPRHmzEuogxzhFW_Y0vfys0Zv4muY59S14dSmtDv_8_3a8jOoos0lO1IpgBg5BSD0Hs26X_p4FS23f2Epv1ST2ipjCatkHC4aA6_xHY7Nlb64QWFIs-6jXqSdooL7Q5TkRVGiZpgD3ikoeQ6Tk5YYO9H5WnIHmhMl_r5AaUjGxqJVkAtBDr91JLCvwOwJ6smm4dO9eZ_3OSB3iPMhY-NtrpPYKKE9aHvTkIx_uz6ytagc2QcA7Mg2Van3i-6v5KjlkKzs4mzuBcBA4FTXaQbLO5qdL-QiMLALk8l30LtNiPtVbg38tmg5dNGlSHMfimmxn8D20hOHxDBQYEouWeyjPVZ4YhD6QLceEfpBPwRM69cjkYs-EUoCvJbpaqHIqXqq75TzQ6v1d3d-_YVPLS-4YZvrhlVKA/p.png";
     this.explodedTomato = new Image(); // Image constructor
     this.explodedTomato.src =
-      "https://uca8ccddc17e4eb92f53565b63f9.previews.dropboxusercontent.com/p/thumb/ABkHkiPRDzE2bpoZRphbXdF1WcQ5Ci4kTCvgaoO6uIUFG1aoMqYV9hqGrLbuAkbX_lxusIb0HqZ3LvLxMhhNXSjLkzBlpL4Ztd5Up1B3YvJomZ9fJEiv1ojhcSVbrAkIccTGS10qWbm5ahuGHPqSdLvlTIbcO0TkYBl1IWOpiOeKGIX1izVMMi3WeSEVu7kKBQ5f95JTwmvn89KXNpm2i_bVSOKtAgItk1xeJ6lA9G4acKlIDQQUxFKi3b2jGgfX9QJvMc2AfWmPW3xr_KvUGlRGz9JZDjRXOA-MVzONZY-ToC4JdY2M6dFk4WYCVzE2jJPSvG4ctuAlnVoGbv7FomIOmYcZbS-jYRYfEVSKlCZZCWvVa1xsKuteDfztPwWGVCaHDslSLyo5aUg8U0gO_K91I399vS5BDXGtdYLhRjfttg/p.png";
+      "https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png";
+    this.glove = new Image(); // Image constructor
+    this.glove.src =
+      "https://ucd4dac90a51e685033c57771cf2.previews.dropboxusercontent.com/p/thumb/ABkBrLkROTDchp4-yS5qZgh1BAc_b-XbQggLYmQWfZX8XjyXpX_EbfCJcchy5_TSZcp_r2hVarj-QdM1z-OR7PS4iKRLFzuiHx6LEAKKO7wvvuUfQ5WlPGrlK1DhcnnaEjGD5-ZEuhDJk-qtvr62v2rOIDVOU0lblgCyqbUQIJ2vNc4a6UzLsCLCjdGC1TV0A6pkaaWViK38MOWvEOHqLqPE0uX5sRN5qhSatg-zWK3NJJVxYPns09OKOkpvkng-sn_7raKKfn9vCB5L79Mm6e9c0EELJwIGphCEX1tWZcM55UDcRJuAZW_XmXhrmgQ8HAqEzxyASKtJdlunIU56MTroqJMgLgfk5MjTeYL-jmGgG95tYZEqIAMIv3tDCpgu8Z9EaL5Qxcf0lWjiSd5Xi9mG2wdfQ-jnbIRNQwpScL1amQ/p.png";
+    this.knife = new Image(); // Image constructor
+    this.knife.src =
+      "https://uc357ab0f3e1f51096eddd8e48ed.previews.dropboxusercontent.com/p/thumb/ABkZfbo2oBLij8vHkHe9Ws-LUKmGaHP3u2-NUGyPKJElxeRml7-imddrHge0mc-zZPlrkKM-JdDkT3bptamAnGR4l_qmqV8WG4g8CyvZxlFpbq2kW0OV9XyM5-NS4TgsYH1oPLp6bW33VhATG0NNc9YffigeVOCHDWmkXBK0wknY7yHv11OUXNIgxZhNrXbAfUGVyRStoljn6xAAQ8kdqvwf_743v8XIBPyaEyJjVuo5FVZmAFf1JsVdwUgDxQ-LUkVVRF1uM9tX8bDqPadUusoWeosEQEEqoHHllRsGatC7N_x5iGeszXYurDfrcBzKMeNQvrSNYImvV55jrsGVNKUnH4HcABdZJUzmdwlmdfJRi3V7Wt5e6EicxzdWVE0l7QpZl-H69JzG1FOCWr6DShkM7ssQzlYBOhNhkxDqczQEfg/p.png";
+    this.handsize = 60;
   }
 
   /**
@@ -257,28 +264,42 @@ export class Camera {
    * Draw exploded ball on canvas
    */
   drawLeftHand(xLocation, yLocation) {
-    this.ctx.fillStyle = "Blue";
-    this.ctx.strokeStyle = "White";
-    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+    // this.ctx.fillStyle = "Blue";
+    // this.ctx.strokeStyle = "White";
+    // // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
 
-    const circle3 = new Path2D();
-    circle3.arc(xLocation, yLocation, 5 * 2, 0, 2 * Math.PI);
-    this.ctx.fill(circle3);
-    this.ctx.stroke(circle3);
+    // const circle3 = new Path2D();
+    // circle3.arc(xLocation, yLocation, 5 * 2, 0, 2 * Math.PI);
+    // this.ctx.fill(circle3);
+    // this.ctx.stroke(circle3);
+    this.ctx.drawImage(
+      this.knife,
+      xLocation,
+      yLocation,
+      this.handsize,
+      this.handsize
+    );
   }
 
   /**
    * Draw exploded ball on canvas
    */
   drawRightHand(xLocation, yLocation) {
-    this.ctx.fillStyle = "Red";
-    this.ctx.strokeStyle = "White";
-    // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
+    // this.ctx.fillStyle = "Red";
+    // this.ctx.strokeStyle = "White";
+    // // this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
 
-    const circle4 = new Path2D();
-    circle4.arc(xLocation, yLocation, 5 * 2, 0, 2 * Math.PI);
-    this.ctx.fill(circle4);
-    this.ctx.stroke(circle4);
+    // const circle4 = new Path2D();
+    // circle4.arc(xLocation, yLocation, 5 * 2, 0, 2 * Math.PI);
+    // this.ctx.fill(circle4);
+    // this.ctx.stroke(circle4);
+    this.ctx.drawImage(
+      this.glove,
+      xLocation,
+      yLocation,
+      this.handsize,
+      this.handsize
+    );
   }
 
   /**
