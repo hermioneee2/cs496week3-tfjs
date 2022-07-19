@@ -421,16 +421,20 @@ function setExplodedBall() {
     xLeftExploded1Location = xLeftLocation;
     yLeftExploded1Location = yLeftLocation;
     numOfExplodedBall++;
+    document.getElementById("deadTomato1").style.visibility = "visible";
   } else if (numOfExplodedBall == 1) {
     camera.drawExplodedBall(xLeftLocation, yLeftLocation, radius);
     xLeftExploded2Location = xLeftLocation;
     yLeftExploded2Location = yLeftLocation;
     numOfExplodedBall++;
+    document.getElementById("deadTomato2").style.visibility = "visible";
   } else if (numOfExplodedBall == 2) {
     camera.drawExplodedBall(xLeftLocation, yLeftLocation, radius);
     xLeftExploded3Location = xLeftLocation;
     yLeftExploded3Location = yLeftLocation;
     numOfExplodedBall++;
+    document.getElementById("deadTomato3").style.visibility = "visible";
+
     cancelAnimationFrame(rafId);
     console.log("THE END");
     document.getElementById("ending").style.display = "block";

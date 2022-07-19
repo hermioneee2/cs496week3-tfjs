@@ -112,8 +112,16 @@ limitations under the License.
       .deadTomato {
         width: 55px;
         height: 55px;
+        visibility: hidden;
       }
       #deadTomatoes {
+        align-self: center;
+        display: flex;
+        align-content: center;
+      }
+      #deadTomatoesDesc {
+        font-size: 22pt;
+        margin-right: 12px;
         align-self: center;
       }
       /* #collectedTomatoes {
@@ -174,9 +182,10 @@ limitations under the License.
             <div id="tomatoNum">8</div>
           </div> -->
           <div id="deadTomatoes">
-            <img class="deadTomato" src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png">
-            <img class="deadTomato" src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png">
-            <img class="deadTomato" src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png">
+            <div id="deadTomatoesDesc">터진 토마토:</div>
+            <img class="deadTomato" id="deadTomato1" src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png">
+            <img class="deadTomato" id="deadTomato2" src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png">
+            <img class="deadTomato" id="deadTomato3" src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png">
           </div>
         </div>
         <div class="canvas-wrapper">
