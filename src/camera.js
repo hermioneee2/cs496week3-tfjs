@@ -99,7 +99,7 @@ export class Camera {
     this.knife = new Image(); // Image constructor
     this.knife.src =
       "https://uc357ab0f3e1f51096eddd8e48ed.previews.dropboxusercontent.com/p/thumb/ABkZfbo2oBLij8vHkHe9Ws-LUKmGaHP3u2-NUGyPKJElxeRml7-imddrHge0mc-zZPlrkKM-JdDkT3bptamAnGR4l_qmqV8WG4g8CyvZxlFpbq2kW0OV9XyM5-NS4TgsYH1oPLp6bW33VhATG0NNc9YffigeVOCHDWmkXBK0wknY7yHv11OUXNIgxZhNrXbAfUGVyRStoljn6xAAQ8kdqvwf_743v8XIBPyaEyJjVuo5FVZmAFf1JsVdwUgDxQ-LUkVVRF1uM9tX8bDqPadUusoWeosEQEEqoHHllRsGatC7N_x5iGeszXYurDfrcBzKMeNQvrSNYImvV55jrsGVNKUnH4HcABdZJUzmdwlmdfJRi3V7Wt5e6EicxzdWVE0l7QpZl-H69JzG1FOCWr6DShkM7ssQzlYBOhNhkxDqczQEfg/p.png";
-    this.handsize = 60;
+    this.handsize = 80;
   }
 
   /**
@@ -255,8 +255,8 @@ export class Camera {
       this.explodedTomato,
       xLocation,
       yLocation,
-      radius,
-      radius
+      radius * 2,
+      radius * 2
     );
   }
 
