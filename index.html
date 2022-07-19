@@ -104,6 +104,23 @@ limitations under the License.
         ); /* Black background with opacity */
         z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
       }
+      #exploding {
+        font-family: "Diary";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 30px;
+        padding-top: 150px;
+        width: 1000px; /* Full width (cover the whole page) */
+        height: 412px; /* Full height (cover the whole page) */
+        background-color: rgba(
+          255,
+          0,
+          0,
+          0.4
+        ); /* Black background with opacity */
+        z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+      }
       #canvas-wrapperr {
         width: 1000px;
         height: 562px;
@@ -304,6 +321,7 @@ limitations under the License.
             <!-- <div id="replayDesc">다시 게임을 하려면 아래 버튼을 누르세요</div> -->
             <input type="button" id="btnRestart" value="다시 도전!" />
           </div>
+          <div id="exploding" style="display: none"></div>
           <div id="canvas-wrapperr">
             <canvas id="output"></canvas>
           </div>

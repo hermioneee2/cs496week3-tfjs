@@ -1,5 +1,6 @@
 var timer;
 var countDowner;
+var countDownHelper;
 var hour = 0;
 var min = 0;
 var sec = 0;
@@ -97,6 +98,12 @@ function startCountDown() {
   countDowner = setInterval(function () {
     countDown--;
     document.getElementById("explodedCountDown").innerHTML = countDown;
+    if (countDown == 3 || countDown == 2 || countDown == 1) {
+      document.getElementById("exploding").style.display = "block";
+      countDownHelper = setTimeout(() => {
+        document.getElementById("exploding").style.display = "none";
+      }, 300);
+    }
   }, 1000);
 }
 
