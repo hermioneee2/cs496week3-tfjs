@@ -39,13 +39,55 @@ limitations under the License.
         text-align: center;
         font-family: sans-serif;
       }
+      @font-face {
+        font-family: "Diary";
+        src: url("./fonts/EF_Diary.ttf") format("woff");
+      }
+      #intro #ending #main {
+        font-family: "Diary";
+      }
+      #intro {
+        margin: auto;
+        text-align: center;
+        margin-top: 10vh;
+      }
+      #title {
+        font-family: "Diary";
+        font-size: 50px;
+        margin-bottom: 5vh;
+        font-weight: 700;
+      }
+      .tomato {
+        width: 120px;
+        height: 120px;
+      }
+      #password {
+        font-family: "Diary";
+        font-size: x-large;
+        font-weight: 600;
+      }
     </style>
     <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
     <script src="src/index.js" defer></script>
   </head>
   <body>
     <div id="intro">
-      <div>hello</div>
+      <div id="title">토마토마토</div>
+      <div id="tomatoes">
+        <img
+          class="tomato"
+          src="https://uc2c5410c616c44bc9fb4291271b.previews.dropboxusercontent.com/p/thumb/ABm7Tgt4D4iLTPuvA29yXw_rCJ5aZilnfJ4mYgjJ2RzFTUQHxE4pV9DPVsUz9iXVDHoeWJWnWHjW1GzdYi3CqcsgwKAFobXXO8R0uH687pFZIN853ywmF7eciTZ4e5RMRmOASGB_VjNxJUuvcgXqXSFeq-d-5QGBBsxM7NWhzVxjHlAns0FvsuY6dUDE3lZD53pCEXR1VtkAisfNjFdnldXyoPtIw2U5XbZGi-Do6lCvlYAXe1JrhCb8EkRWg8btURts6LYmoOX7pO6hlKOjtOqRiETc9JfP7cLUpWvRUl6aTd_Sf6apvVcngDizBxY1fZpyUF31mZZwc0OLluH_HJsEb03AVd4T16wAC70KqQo3PcILk7hYrfkEJm_kztU1xxssbVRKYY5Ad_1clmFlVoDBHxqztYQsoLd4VrCfKJvpiQ/p.png"
+        />
+        <img
+          class="tomato"
+          src="https://uc4cf3af0a5cd5c4221ea2b84a25.previews.dropboxusercontent.com/p/thumb/ABmZ1E-zfVZYS2qTvPRHmzEuogxzhFW_Y0vfys0Zv4muY59S14dSmtDv_8_3a8jOoos0lO1IpgBg5BSD0Hs26X_p4FS23f2Epv1ST2ipjCatkHC4aA6_xHY7Nlb64QWFIs-6jXqSdooL7Q5TkRVGiZpgD3ikoeQ6Tk5YYO9H5WnIHmhMl_r5AaUjGxqJVkAtBDr91JLCvwOwJ6smm4dO9eZ_3OSB3iPMhY-NtrpPYKKE9aHvTkIx_uz6ytagc2QcA7Mg2Van3i-6v5KjlkKzs4mzuBcBA4FTXaQbLO5qdL-QiMLALk8l30LtNiPtVbg38tmg5dNGlSHMfimmxn8D20hOHxDBQYEouWeyjPVZ4YhD6QLceEfpBPwRM69cjkYs-EUoCvJbpaqHIqXqq75TzQ6v1d3d-_YVPLS-4YZvrhlVKA/p.png"
+        />
+        <img
+          class="tomato"
+          src="https://uc2c5410c616c44bc9fb4291271b.previews.dropboxusercontent.com/p/thumb/ABm7Tgt4D4iLTPuvA29yXw_rCJ5aZilnfJ4mYgjJ2RzFTUQHxE4pV9DPVsUz9iXVDHoeWJWnWHjW1GzdYi3CqcsgwKAFobXXO8R0uH687pFZIN853ywmF7eciTZ4e5RMRmOASGB_VjNxJUuvcgXqXSFeq-d-5QGBBsxM7NWhzVxjHlAns0FvsuY6dUDE3lZD53pCEXR1VtkAisfNjFdnldXyoPtIw2U5XbZGi-Do6lCvlYAXe1JrhCb8EkRWg8btURts6LYmoOX7pO6hlKOjtOqRiETc9JfP7cLUpWvRUl6aTd_Sf6apvVcngDizBxY1fZpyUF31mZZwc0OLluH_HJsEb03AVd4T16wAC70KqQo3PcILk7hYrfkEJm_kztU1xxssbVRKYY5Ad_1clmFlVoDBHxqztYQsoLd4VrCfKJvpiQ/p.png"
+        />
+      </div>
+
       <p id="password"></p>
       <p id="appConnected"></p>
       <!-- <input
