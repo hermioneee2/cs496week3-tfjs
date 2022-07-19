@@ -30,15 +30,7 @@ limitations under the License.
         position: relative;
         margin: auto;
       } */
-      .timerBox {
-        /* width: 200px;
-        outline: 2px solid black; */
-      }
-      .timerBox .time {
-        font-size: 30pt;
-        color: #4c4c4c;
-        text-align: center;
-      }
+
       @font-face {
         font-family: "Diary";
         src: url("./fonts/EF_Diary.ttf") format("woff");
@@ -49,7 +41,7 @@ limitations under the License.
         font-family: "Diary";
         margin: auto;
         text-align: center;
-        margin-top: 10vh;
+        margin-top: 8vh;
       }
       #title {
         font-family: "Diary";
@@ -102,6 +94,49 @@ limitations under the License.
         top: 0;
         position: relative;
       }
+      #dashboard {
+        width: 900px;
+        height: 80px;
+        background-color: beige;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        padding-left: 20pt;
+        padding-right: 20pt;
+      }
+      #time {
+        font-size: 30pt;
+        color: #4c4c4c;
+        text-align: center;
+        align-self: center;
+      }
+      .deadTomato {
+        width: 55px;
+        height: 55px;
+      }
+      #deadTomatoes {
+        align-self: center;
+      }
+      /* #collectedTomatoes {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+      }
+      .littleTomato {
+        align-self: center;
+        width: 50px;
+        height: 50px;
+      }
+      #tomatoNum {
+        align-self: center;
+        font-size: 24pt;
+        font-weight: 600;
+        margin-right: 20px;
+        margin-left: 12px;
+      } */
     </style>
     <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
     <script src="src/index.js" defer></script>
@@ -134,16 +169,38 @@ limitations under the License.
       /> -->
       <input type="button" id="btnStart" value="Start Game" />
     </div>
-    <!-- <div id="ending" style="display: none">
-      <div id="endingCover"></div>
-      <div>the end</div>
-      <input type="button" id="btnRestart" value="Restart" />
-    </div> -->
     <div id="stats"></div>
     <div id="main" style="display: none">
       <div class="container">
-        <div id="timerBox" class="timerBox">
-          <div id="time" class="time">00:00:00</div>
+        <div id="dashboard">
+          <div id="time">00:00:00</div>
+          <!-- <div id="collectedTomatoes">
+            <img
+              class="littleTomato"
+              src="https://uc2c5410c616c44bc9fb4291271b.previews.dropboxusercontent.com/p/thumb/ABm7Tgt4D4iLTPuvA29yXw_rCJ5aZilnfJ4mYgjJ2RzFTUQHxE4pV9DPVsUz9iXVDHoeWJWnWHjW1GzdYi3CqcsgwKAFobXXO8R0uH687pFZIN853ywmF7eciTZ4e5RMRmOASGB_VjNxJUuvcgXqXSFeq-d-5QGBBsxM7NWhzVxjHlAns0FvsuY6dUDE3lZD53pCEXR1VtkAisfNjFdnldXyoPtIw2U5XbZGi-Do6lCvlYAXe1JrhCb8EkRWg8btURts6LYmoOX7pO6hlKOjtOqRiETc9JfP7cLUpWvRUl6aTd_Sf6apvVcngDizBxY1fZpyUF31mZZwc0OLluH_HJsEb03AVd4T16wAC70KqQo3PcILk7hYrfkEJm_kztU1xxssbVRKYY5Ad_1clmFlVoDBHxqztYQsoLd4VrCfKJvpiQ/p.png"
+            />
+            <div id="tomatoNum">8</div>
+
+            <img
+              class="littleTomato"
+              src="https://uc4cf3af0a5cd5c4221ea2b84a25.previews.dropboxusercontent.com/p/thumb/ABmZ1E-zfVZYS2qTvPRHmzEuogxzhFW_Y0vfys0Zv4muY59S14dSmtDv_8_3a8jOoos0lO1IpgBg5BSD0Hs26X_p4FS23f2Epv1ST2ipjCatkHC4aA6_xHY7Nlb64QWFIs-6jXqSdooL7Q5TkRVGiZpgD3ikoeQ6Tk5YYO9H5WnIHmhMl_r5AaUjGxqJVkAtBDr91JLCvwOwJ6smm4dO9eZ_3OSB3iPMhY-NtrpPYKKE9aHvTkIx_uz6ytagc2QcA7Mg2Van3i-6v5KjlkKzs4mzuBcBA4FTXaQbLO5qdL-QiMLALk8l30LtNiPtVbg38tmg5dNGlSHMfimmxn8D20hOHxDBQYEouWeyjPVZ4YhD6QLceEfpBPwRM69cjkYs-EUoCvJbpaqHIqXqq75TzQ6v1d3d-_YVPLS-4YZvrhlVKA/p.png"
+            />
+            <div id="tomatoNum">8</div>
+          </div> -->
+          <div id="deadTomatoes">
+            <img
+              class="deadTomato"
+              src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png"
+            />
+            <img
+              class="deadTomato"
+              src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png"
+            />
+            <img
+              class="deadTomato"
+              src="https://uc3e943e4f9f814655e32ee6122e.previews.dropboxusercontent.com/p/thumb/ABlGdeddDtS9UU2ba42ycjwIT0TVAXQ0EbTUne3OqmANo6QWM6LlcZ1o4_GVYRXSVaOICSPvZ28XJJms80dIDXevBa0y-r1Svhg0LXf9NNw2LggHY6tBwLwyHe-8tbqMEwLcz8SxfJjWuxb6wAftlKyOidv78nHihEeKYsQ8mENHu_pdM52hFBvsS2DoJCF15MXdyT2wpwK17qhDb01TNtjKfsy1-5-7ZXBVTo8QU4GZddQRhtecbxwdDCQf45yZeSTdXIFrBNls7nzPF7VhCWUd1kwB_wOEJxq-exIa_mZk0Xc3SUDj0LBHeMd_q4MVA_lYMJCxCDdFi1lPcYdcIxJnGkFDTVYD88y5aFxYJrRw55apRpi3yvEjbJbVpt-y9a61ni3sCE5RkfCAuvwPQjHSNBjbLC8fSyIPRGfb5GX5Zw/p.png"
+            />
+          </div>
         </div>
         <div class="canvas-wrapper">
           <div id="ending" style="display: none">
